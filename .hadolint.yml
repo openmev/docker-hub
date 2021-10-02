@@ -1,0 +1,4 @@
+# -*- mode: hadolint; -*-
+# 2021.10
+# see https://github.com/hadolint/hadolint#rules for a list of available rules.
+ignored: ['DL3018', 'DL3020', 'DL3018']
