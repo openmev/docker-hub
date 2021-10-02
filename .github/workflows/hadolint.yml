@@ -2,11 +2,9 @@ name: Hadolint
 
 on:
   push:
-    branches:
-      - 'master'
 
 jobs:
-  bake:
+  hadolint:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
