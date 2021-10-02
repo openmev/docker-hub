@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM golang:1.17-alpine AS builder
 
 RUN apk add --no-cache gcc musl-dev linux-headers git
