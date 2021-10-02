@@ -3,6 +3,7 @@ FROM golang:1.17-alpine AS builder
 
 RUN apk add --no-cache gcc musl-dev linux-headers git
 
+WORKDIR /go-ethereum
 ADD . /go-ethereum
 
 RUN cd /go-ethereum && go run build/ci.go install ./cmd/geth
