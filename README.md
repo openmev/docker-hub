@@ -15,3 +15,5 @@ Flashbots Go-Ethereum (MEV Geth) Alpine and Debian Container Images
 ### Alpine 
 
 [mev-geth alpine](https://hub.docker.com/r/openmev/mev-geth-alpine) / [latest tags](https://hub.docker.com/r/openmev/mev-geth-alpine/tags?page=1&ordering=last_updated)
+
+[eden-network client](https://hub.docker.com/repository/docker/openmev/eden-client) / [latest tags](https://hub.docker.com/repository/registry-1.docker.io/openmev/eden-client/tags?page=1&ordering=last_updated)
