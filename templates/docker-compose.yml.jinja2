@@ -1,0 +1,18 @@
+---
+version: '3.7'
+services:
+  metrics:
+    container_name: '{{ geth_expo_cont_name }}'
+    image: '{{ geth_expo_cont_image }}'
+    user: 'root'
+    restart: 'always'
+    entrypoint: 'geth_exporter' 
+    ports:
+      - '{{ geth_expo_cont_port }}:{{ geth_expo_cont_port }}/tcp'
+    volumes:
+      - '{{ geth_expo_source_data_path | mandatory }}:/data'
+    command: |
+      -ipc /data/geth.ipc
+      -port {{ geth_expo_cont_port }}
+    depends_on:
+      - 'geth'
