@@ -1,0 +1,24 @@
+---
+- name: Create compose file
+  template:
+    src: 'docker-compose.yml.j2'
+    dest: '{{ geth_expo_compose_path }}'
+    owner: 'dockremap'
+    group: 'docker'
+    mode: 0640
+
+# Take into account additional docker-compose.yml files.
+- name: Find all Docker Compose files
+  find:
+    paths: '{{ geth_expo_service_path }}'
+    patterns: 'docker-compose*.yml'
+    recurse: false
+  register: geth_expo_all_compose
+
+- name: Create containers
+  docker_compose:
+    project_src: '{{ geth_expo_service_path }}'
+    files: '{{ geth_expo_all_compose.files | map(attribute="path") | list }}'
+    state: '{{ compose_state }}'
+    restarted: '{{ compose_restart }}'
+    recreate: '{{ compose_recreate | default("smart") }}'
