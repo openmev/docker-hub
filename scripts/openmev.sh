@@ -1,4 +1,7 @@
 #!/bin/bash
+# @NOTICE
+#	THIS IS FOR USAGE IN TESTING ENV
+#
 #  - OPENMEV_MINER                   enable mining. value is coinbase address.
 #  - OPENMEV_MINER_EXTRA             extra-data field to set for newly minted blocks
 #  - OPENMEV_SKIP_POW                if set, skip PoW verification during block import
@@ -54,7 +57,7 @@ cat /genesis.json
 
 # Initialize the local testchain with the genesis state
 echo "Initializing database with genesis state..."
-$geth $FLAGS init /genesis.json
+$geth "$FLAGS" init /genesis.json
 
 # Don't immediately abort, some imports are meant to fail
 set +e
@@ -62,7 +65,7 @@ set +e
 # Load the test chain if present
 echo "Loading initial blockchain..."
 if [ -f /chain.rlp ]; then
-	$geth $FLAGS --gcmode=arcOPENMEV import /chain.rlp
+	$geth "$FLAGS" --gcmode=arcOPENMEV import /chain.rlp
 else
 	echo "Warning: chain.rlp not found."
 fi
@@ -70,7 +73,7 @@ fi
 # Load the remainder of the test chain
 echo "Loading remaining individual blocks..."
 if [ -d /blocks ]; then
-	(cd /blocks && $geth $FLAGS --gcmode=arcOPENMEV --verbosity=$OPENMEV_LOGLEVEL --nocompaction import `ls | sort -n`)
+	(cd /blocks && $geth "$FLAGS" --gcmode=arcOPENMEV --verbosity="$OPENMEV_LOGLEVEL" --nocompaction import $(ls | sort -n))
 else
 	echo "Warning: blocks folder not found."
 fi
@@ -113,5 +116,4 @@ fi
 # Run the go-ethereum implementation with the requested flags.
 FLAGS="$FLAGS --nat=none"
 echo "Running go-ethereum with flags $FLAGS"
-$geth $FLAGS
-© 2021 GitHub, Inc.
+$geth "$FLAGS"
