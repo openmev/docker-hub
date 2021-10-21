@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+# @note alpine doesn't have bash
 # @NOTICE
 #	THIS IS FOR USAGE IN TESTING ENV
 #
