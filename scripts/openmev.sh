@@ -114,4 +114,3 @@ fi
 FLAGS="$FLAGS --nat=none"
 echo "Running go-ethereum with flags $FLAGS"
 $geth $FLAGS
-© 2021 GitHub, Inc.
